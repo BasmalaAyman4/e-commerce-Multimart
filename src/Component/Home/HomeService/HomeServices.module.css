@@ -1,0 +1,70 @@
+.col__body {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-family: 'JosefinSans-Regular' !important;
+    padding: 20px 5px;
+
+}
+
+.col__icon {
+    font-size: 50px;
+    color: #fff;
+    background-color: #133A5E;
+    padding: 10px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.col1 {
+    background-color: #FDEDE4;
+    margin-right: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.col2 {
+    background-color: #CBE5E7;
+    margin-right: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.col3 {
+    background-color: #E2E9AF;
+    margin-right: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.col4 {
+    background-color: #D3E2FD;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.col__title {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #133A5E;
+    font-size: 20px;
+}
+
+.col__para {
+    color: #333;
+}

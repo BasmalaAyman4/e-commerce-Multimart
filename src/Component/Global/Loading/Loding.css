@@ -1,0 +1,72 @@
+.loader {
+    position: relative;
+}
+
+.loader span {
+    position: absolute;
+    color: #fff;
+    font-size: 38px;
+    letter-spacing: 5px;
+    top: 400px;
+    left: 850px;
+    font-family: 'JosefinSans-Regular' !important;
+    font-weight: bold;
+        
+}
+
+.loader span:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 0.3px #2e79be;
+}
+
+.loader span:nth-child(2) {
+    color: var(--secondary-color);
+    -webkit-text-stroke: 1px var(--secondary-color);
+    animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+
+    0%,
+    100% {
+        clip-path: polygon(0% 45%, 15% 44%, 32% 50%,
+                54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 60%, 16% 65%, 34% 66%,
+                51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    }
+}
+.progress-loader {
+    top: 460px;
+        left: 840px;
+    position: absolute;
+    width: 200px;
+    background: rgba(159, 159, 212, 0.253);
+    height: 10px;
+    border-radius: 7px;
+}
+
+.progress {
+    width: 1px;
+    height: 10px;
+    border-radius: 7px;
+    background: var(--secondary-color);
+    transition: 0.5s;
+    animation: loading_44 5s cubic-bezier(.4, 1.01, 1, 1) infinite;
+}
+
+@keyframes loading_44 {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
