@@ -10,12 +10,9 @@ import 'aos/dist/aos.css'
 import img from '../../../assets/image/services.png'
 
 export default function HomeService() {
-    useEffect(() => {
-        Aos.init({ duration: 1000 });
-    }, [])
     return (
         <>
-            <section className='' data-aos="fade-down">
+            <section className='' >
                 <Container>
                     <Row>
 
@@ -57,6 +54,7 @@ export default function HomeService() {
                         </Col>
                     </Row>
                 </Container>
+
             </section>
 
         </>

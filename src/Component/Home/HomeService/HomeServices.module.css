@@ -4,9 +4,21 @@
     column-gap: 10px;
     font-family: 'JosefinSans-Regular' !important;
     padding: 20px 5px;
-
 }
 
+.col1,
+.col2,
+.col3,
+.col4{
+transition: all .2s linear;
+cursor: pointer;
+}
+.col1:hover,
+.col2:hover,
+.col3:hover,
+.col4:hover {
+    transform: translateY(-10px);
+}
 .col__icon {
     font-size: 50px;
     color: #fff;

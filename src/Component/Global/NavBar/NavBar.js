@@ -9,19 +9,31 @@ import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineMenu } from "react-icon
 import { Row } from 'react-bootstrap';
 import './NavBar.css'
 export default function NavBar() {
+    const [navBg, setNavBg] = useState(false);
+    const menuref = useRef(null)
+    const changeNavBg = () => {
+        window.scrollY >= 200 ? setNavBg(true) : setNavBg(false);
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', changeNavBg);
+        return () => {
+            window.removeEventListener('scroll', changeNavBg);
+        }
+    }, [])
+    const menuToggle = () => menuref.current.classList.toggle(`${styles.active__menu}`)
     return (
         <>
             <header className={`${styles.header}`}>
                 <Container>
                     <Row>
-                        <div className={`${styles.nav__wrapper}`}>
+                        <div onScroll={changeNavBg} className={`${styles.nav__wrapper}`}>
                             <div className={`${styles.logo}`}>
                                 <img src={logo} alt='' />
                                 <div>
                                     <h1>Multimart</h1>
                                 </div>
                             </div>
-                            <div className={`${styles.navigation}`}>
+                            <div className={`${styles.navigation}`} ref={menuref} onClick={menuToggle}>
                                 <ul className={styles.menu}>
                                     <li className={styles.nav__item}>
                                         <NavLink to="/" className="nav-link" >Home </NavLink>
@@ -46,13 +58,14 @@ export default function NavBar() {
                                 <span>
                                     <img src={userImg} alt='' className={`${styles.userImg}`} />
                                 </span>
-                            </div>
-                            <div className={styles.mobile__menu}>
-                                <span>
-                                    <AiOutlineMenu className={`${styles.i}`} />
-                                </span>
+                                <div className={styles.mobile__menu}>
+                                    <span onClick={menuToggle}>
+                                        <AiOutlineMenu className={`${styles.i}`} />
+                                    </span>
 
+                                </div>
                             </div>
+
                         </div>
                     </Row>
                 </Container>
