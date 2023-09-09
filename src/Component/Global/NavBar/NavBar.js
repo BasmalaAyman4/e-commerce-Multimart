@@ -8,8 +8,10 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
 import { Row } from 'react-bootstrap';
 import './NavBar.css'
+import { useSelector } from 'react-redux';
 export default function NavBar() {
     const [navBg, setNavBg] = useState(false);
+    const quantity = useSelector(state => state.cart.totalQuantity)
     const menuref = useRef(null)
     const changeNavBg = () => {
         window.scrollY >= 200 ? setNavBg(true) : setNavBg(false);
@@ -53,7 +55,7 @@ export default function NavBar() {
                                 </span>
                                 <span className={`${styles.cart__icon}`}>
                                     <AiOutlineShoppingCart className={`${styles.i}`} />
-                                    <span className={`${styles.badge}`}>2</span>
+                                    <span className={`${styles.badge}`}>{quantity}</span>
                                 </span>
                                 <span>
                                     <img src={userImg} alt='' className={`${styles.userImg}`} />

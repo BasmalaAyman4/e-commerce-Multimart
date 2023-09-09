@@ -1,0 +1,58 @@
+.footer {
+    position: relative;
+    z-index: 3000;
+    background-image: linear-gradient(to top, #133A5Ecf, #133A5Ecf),
+        url(https://i.shgcdn.com/4427c8e2-7042-41d8-bcfb-0fb78efd53bf/-/format/auto/-/preview/3000x3000/-/quality/lighter/);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    padding: 50px 50px 10px;
+}
+
+.foot {
+    color: #fff !important;
+    font-family: 'JosefinSans-Regular' !important;
+    text-transform: capitalize;
+}
+
+.link {
+    border-bottom: 2px solid #fff;
+    width: 110px;
+    padding-bottom: 20px;
+}
+
+.a {
+    text-decoration: none;
+}
+
+.li {
+    transition: all 400ms ease-in-out;
+}
+
+.li:hover {
+    transform: translateX(10px);
+    -webkit-transform: translateX(10px);
+    -moz-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    -o-transform: translateX(10px);
+    color: var(--secondary-color);
+}
+
+.copy {
+    background-color: #133A5Ecf;
+}
+
+.copyRule {
+    display: flex;
+    gap: 20px;
+}
+
+.all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'JosefinSans-Regular' !important;
+    padding-top: 20px;
+    color: #fff;
+}

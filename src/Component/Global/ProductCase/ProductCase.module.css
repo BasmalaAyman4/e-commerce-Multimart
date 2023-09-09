@@ -11,8 +11,7 @@
     font-family: 'JosefinSans-Regular' !important;
 }
 
-.card::after {
-    content: "Add to Cart";
+.btn {
     padding-top: 1.25em;
     position: absolute;
     left: 0;
@@ -26,6 +25,7 @@
     text-transform: uppercase;
     opacity: 0;
     text-align: center;
+    border: none !important;
 }
 
 .card .title {
@@ -40,18 +40,13 @@
     color: #000;
 }
 
-.card:hover::after {
+.card:hover .btn {
     bottom: 0;
     opacity: 1;
 }
 
 .card:active {
     transform: scale(0.98);
-}
-
-.card:active::after {
-    content: "Added !";
-    height: 3.125em;
 }
 .image {
     width: 100%;
