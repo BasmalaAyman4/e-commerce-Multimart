@@ -1,0 +1,14 @@
+
+.option{
+    font-size: 20px;
+    color: #347c99;
+}
+
+.formSelect{
+    width: 300px;
+    padding: 15px;
+    border: none;
+    border-bottom: #E2E9AF 1px solid !important;
+    outline: none;
+    font-family: 'JosefinSans-Regular' !important;
+}

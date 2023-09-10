@@ -1,0 +1,42 @@
+.common{
+    padding-bottom: 0 !important;
+}
+.shopImg {
+    position: relative;
+}
+
+.bulr {
+    width: 100%;
+    height: 400px;
+}
+
+.shopImg::after {
+    top: 0;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: repeat-x;
+    background-repeat: no-repeat-y;
+    background-position: center;
+    background-color: #4b55634d !important;
+}
+.shop__body {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    z-index: 2;
+}
+
+.shop__title {
+    font-family: 'JosefinSans-Regular' !important;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: bold;
+}

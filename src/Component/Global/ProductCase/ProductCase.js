@@ -20,16 +20,8 @@ export default function ProductCase({ product, title }) {
         toast.success('product added success')
     }
     return (
-
-
-
-
-
         <>
             <h1 className={`${styles.trend}`}>{title}</h1>
-
-
-
             {
                 product.map((data) => (
 
