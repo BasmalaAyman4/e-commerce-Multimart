@@ -24,33 +24,19 @@ export default function ProductCase({ product, title }) {
             <h1 className={`${styles.trend}`}>{title}</h1>
             {
                 product.map((data) => (
-
-
                     <Col key={data.id} lg="3" className='mb-5'>
-
                         <div className={`${styles.card}`} >
-
-
                             <div className={`${styles.image}`}>
-                                <Link to={`/shop/${data.id}`} className={`${styles.Link__data}`}>
+                                <Link to={`/shop-details/${data.id}`} className={`${styles.Link__data}`}>
                                     <img src={data.imgUrl} alt='' className={`${styles.prod__img}`} />
-
-
                                 </Link>
                             </div>
                             <div className={`${styles.cardbody}`} >
-
-
                                 <h1 className={`${styles.title}`}>{data.productName}</h1>
                                 <p className={`${styles.price}`}>{data.price} $</p>
                             </div>
-
-
                             <button className={`${styles.btn}`} onClick={addToCart}>Add to cart</button>
                         </div>
-
-
-
                     </Col>
                 ))
             }

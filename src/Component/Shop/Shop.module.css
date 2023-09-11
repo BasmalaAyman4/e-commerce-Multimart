@@ -12,3 +12,64 @@
     outline: none;
     font-family: 'JosefinSans-Regular' !important;
 }
+.form {
+    --width-of-input: 500px;
+    --border-height: 1px;
+    --border-before-color: #E2E9AF;
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    width: var(--width-of-input);
+    font-family: 'JosefinSans-Regular' !important;
+   
+}
+
+/* styling of Input */
+.input {
+    color: #333;
+    font-size: 1rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    text-transform: capitalize;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+/* styling of animated border */
+.input__border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+
+/* Hover on Input */
+input:hover {
+    background: var(--input-hovered-color);
+}
+
+input:focus {
+    outline: none;
+}
+
+/* here is code of animated border */
+input:focus~.input__border {
+    width: 100%;
+}
+
+/* === if you want to do animated border on typing === */
+/* remove input:focus code and uncomment below code */
+/* input:valid ~ .input-border{
+  width: 100%;
+} */
+.filterAll{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

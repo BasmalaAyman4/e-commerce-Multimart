@@ -5,29 +5,42 @@ import styles from './Shop.module.css'
 import products from "./../../assets/data/products"
 import ProductCase from '../Global/ProductCase/ProductCase'
 export default function Shop() {
-    const [valueData, setValueData] = useState('');
     const [data, setData] = useState(products)
-    const menuItems = ["sofa", "chair", "mobile", "watch", "wireless"];
-    const filterItem = (e) => {
-        const newProduct = data.filter((item) => {
-            return e.target.value === item.category
-        })
-        setValueData(e.target.value)
-        setData(newProduct)
+    const menuItems = [...new Set(products.map((val) => val.category))];
+    const filterItem = (category) => {
+        if (category === "All Categories") {
+            setData(products)
+            return;
+        }
+        const filteredProducts = products.filter(product =>
+            product.category === category);
+        setData(filteredProducts)
+    }
+    const searchItem = (e) => {
+        const filterSearch = products.filter((item) =>
+            item.productName.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+        setData(filterSearch)
     }
     return (
         <>
-            <SectionHeader />
+            <SectionHeader title="All Products" />
             <section>
                 <Container>
-                    <select className={`${styles.formSelect}`} onChange={filterItem}>
-                        <option className={`${styles.option} pt-5`}>All Categories</option>
-                        {menuItems.map((val, id) => {
-                            return (
-                                <option className={`${styles.option}`} key={id} value={val}>{val}</option>
+                    <div className={`${styles.filterAll}`}>
+                        <select className={`${styles.formSelect}`} onChange={(e) => filterItem(e.target.value)}>
+                            <option className={`${styles.option} pt-5`}>All Categories</option>
+                            {menuItems.map((val) =>
+                            (
+                                <option className={`${styles.option}`} key={val.toString} value={val}>{val}</option>
                             )
-                        })}
-                    </select>
+                            )}
+                        </select>
+                        <div className={`${styles.form}`}>
+                            <input className={`${styles.input}`} placeholder="search about products" type="text" onChange={searchItem} />
+                            <span className={`${styles.input__border}`}></span>
+                        </div>
+                    </div>
                     <Row>
                         <ProductCase product={data} />
                     </Row>
