@@ -5,7 +5,9 @@ import logo from "../../../assets/images/eco-logo.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import userImg from './../../../assets/images/user-icon.png'
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Row } from 'react-bootstrap';
 import './NavBar.css'
 import { useSelector } from 'react-redux';
@@ -50,11 +52,11 @@ export default function NavBar() {
                             </div>
                             <div className={`${styles.nav__icons}`}>
                                 <span className={`${styles.fav__icon}`}>
-                                    <AiOutlineHeart className={`${styles.i}`} />
+                                    <FavoriteBorderIcon className={`${styles.i}`} />
                                     <span className={`${styles.badge}`}>2</span>
                                 </span>
                                 <span className={`${styles.cart__icon}`}>
-                                    <AiOutlineShoppingCart className={`${styles.i}`} />
+                                    <ShoppingCartIcon className={`${styles.i}`} />
                                     <span className={`${styles.badge}`}>{quantity}</span>
                                 </span>
                                 <span>
@@ -62,7 +64,7 @@ export default function NavBar() {
                                 </span>
                                 <div className={styles.mobile__menu}>
                                     <span onClick={menuToggle}>
-                                        <AiOutlineMenu className={`${styles.i}`} />
+                                        <MenuOpenIcon className={`${styles.i}`} />
                                     </span>
 
                                 </div>
