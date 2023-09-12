@@ -1,0 +1,75 @@
+.Checkout{
+    padding-top: 0;
+}
+.input {
+    border: none;
+    outline: none;
+    border-radius: 8px !important;
+    padding: 1em;
+    background-color: #fffffff3 !important;
+    transition: 300ms ease-in-out;
+    font-size: 14px;
+    color: #202020 !important;
+    margin-top: 20px;
+    border: 2px solid #246d57da !important;
+    background-color: #ffffffcb;
+    height: 50px;
+    font-family: "Changa-Regular" !important;
+    position: relative;
+    -webkit-border-radius: 8px !important;
+    -moz-border-radius: 8px !important;
+    -ms-border-radius: 8px !important;
+    -o-border-radius: 8px !important;
+}
+.input:focus {
+    /* background-color: #f5f0f0cb; */
+    box-shadow: 0 0 0 0.25rem transparent;
+    border: 0px solid #246d57da !important;
+    transform: scale(1.00);
+    box-shadow: 0 0 0 0.25rem rgba(21, 65, 50, 0.61);
+}
+
+.input:hover {
+    border: 1px solid #246d57da !important;
+    box-shadow: 0 0 0 2px rgba(21, 65, 50, 0.61);
+}
+.PhoneInputInput input {
+    border: none !important;
+    outline: none !important;
+    background-color: #ffffffcb !important;
+    border-radius: 0px !important;
+}
+.fatora {
+    background-color: #fff;
+    box-shadow: 0 0 4px 0 #696969da;
+    padding: 10px 30px;
+    position: sticky;
+    top: 80px;
+    padding-bottom: 30px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn {
+    text-align: center;
+    text-decoration: none;
+    background-color: #133A5E;
+    padding: 10px 25px;
+    margin-bottom: 20px;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

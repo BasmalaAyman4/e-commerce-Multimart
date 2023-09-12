@@ -1,3 +1,7 @@
 .css-i4bv87-MuiSvgIcon-root {
     color: orange !important;
 }
+.rev{
+    column-gap: 20px;
+    cursor: pointer;
+}

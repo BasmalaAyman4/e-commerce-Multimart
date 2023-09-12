@@ -56,12 +56,14 @@ export default function NavBar() {
                                     <span className={`${styles.badge}`}>2</span>
                                 </span>
                                 <span className={`${styles.cart__icon}`}>
-                                    <ShoppingCartIcon className={`${styles.i}`} />
+                                    <Link to="/cart"><ShoppingCartIcon className={`${styles.i}`} /></Link>
                                     <span className={`${styles.badge}`}>{quantity}</span>
                                 </span>
-                                <span>
-                                    <img src={userImg} alt='' className={`${styles.userImg}`} />
-                                </span>
+                                <Link to="/login">
+                                    <span>
+                                        <img src={userImg} alt='' className={`${styles.userImg}`} />
+                                    </span>
+                                </Link>
                                 <div className={styles.mobile__menu}>
                                     <span onClick={menuToggle}>
                                         <MenuOpenIcon className={`${styles.i}`} />

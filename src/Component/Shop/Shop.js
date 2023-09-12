@@ -4,6 +4,8 @@ import { Container, Row } from 'react-bootstrap'
 import styles from './Shop.module.css'
 import products from "./../../assets/data/products"
 import ProductCase from '../Global/ProductCase/ProductCase'
+import { ToastContainer } from 'react-toastify';
+
 export default function Shop() {
     const [data, setData] = useState(products)
     const menuItems = [...new Set(products.map((val) => val.category))];
@@ -41,10 +43,17 @@ export default function Shop() {
                             <span className={`${styles.input__border}`}></span>
                         </div>
                     </div>
-                    <Row>
-                        <ProductCase product={data} />
+                    <Row className='mt-5'>
+                        {
+                            data.map(item => (
+                                <ProductCase product={item} />
+                            ))
+
+                        }
+
                     </Row>
                 </Container>
+                <ToastContainer />
             </section>
 
         </>

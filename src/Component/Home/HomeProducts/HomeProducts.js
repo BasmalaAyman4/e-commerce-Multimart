@@ -4,6 +4,7 @@ import products from '../../../assets/data/products'
 import ProductCase from '../../Global/ProductCase/ProductCase'
 import styles from './HomeProducts.module.css'
 import imgOffer from "./../../../assets/images/counter-timer-img.png"
+import { ToastContainer } from 'react-toastify';
 export default function HomeProducts() {
     const [trendproduct, setTrendProduct] = useState([])
     const [bestSales, setBestSales] = useState([])
@@ -44,12 +45,24 @@ export default function HomeProducts() {
         <>
             <section>
                 <Container>
-                    <Row>
-                        <ProductCase product={trendproduct} title="Trending Products " />
+
+                    <h1 className={`${styles.trend}`}>Trending Products</h1>
+                    <Row className='mt-5'>
+                        {trendproduct.map((item, index) => (
+
+                            <ProductCase product={item} />
+
+                        ))}
                     </Row>
-                    <Row>
-                        <h1 className={`${styles.trend}`}></h1>
-                        <ProductCase product={bestSales} title="Best Sales " />
+
+                    <Row className='mt-5'>
+                        <h1 className={`${styles.trend}`}>Best Sales</h1>
+                        {
+                            bestSales.map((item, index) => (
+                                <ProductCase product={item} />
+                            ))
+                        }
+
                     </Row>
                 </Container>
             </section>
@@ -88,6 +101,7 @@ export default function HomeProducts() {
                         </Col>
                     </Row>
                 </Container>
+                <ToastContainer />
             </section>
 
 
