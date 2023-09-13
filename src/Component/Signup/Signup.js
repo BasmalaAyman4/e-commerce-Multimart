@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import img from "../../assets/images/login-removebg-preview.png"
 import Form from 'react-bootstrap/Form';
 import styles from "./Signup.module.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../../firebase.config'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -17,10 +17,10 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [file, setFile] = useState(null)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const signup = async (e) => {
         e.preventDefault()
         setLoading(true)
-
         try {
             const userCredential = await createUserWithEmailAndPassword(
                 auth,
@@ -30,25 +30,29 @@ export default function Signup() {
             const user = userCredential.user;
             const storageRef = ref(storage, `images/${Date.now() + username}`)
             const uploadTask = uploadBytesResumable(storageRef, file)
-            uploadTask.on((error) => {
-                toast.error(error.message)
-                console.log(error.message)
-            }, () => {
-                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                    await updateProfile(user, {
-                        displayName: username,
-                        photoURL: downloadURL
-                    });
-                    await setDoc(doc(db, 'users', user.uid), {
-                        uid: user.uid,
-                        displayName: username,
-                        email,
-                        photoURL: downloadURL,
+            uploadTask.on('state_changed',
+                (error) => {
+                    toast.error(error.message)
+                    console.log(error.message)
+                }, () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        await updateProfile(user, {
+                            displayName: username,
+                            photoURL: downloadURL
+                        });
+                        await setDoc(doc(db, 'users', user.uid), {
+                            uid: user.uid,
+                            displayName: username,
+                            email,
+                            photoURL: downloadURL,
+                        })
                     })
                 })
-            })
-            console.log(user)
+            setLoading(false)
+            toast.success('Account created')
+            navigate('/login')
         } catch (error) {
+            setLoading(false)
             toast.error("something went wrong")
             console.log(error)
         }
@@ -58,40 +62,47 @@ export default function Signup() {
             <section className={`${styles.login}`}>
                 <Container>
                     <Row>
-                        <Col>
-                            <img alt="" src={img} />
-                        </Col>
-                        <Col>
-                            <div className={`${styles.form}`}>
-                                <div >
-                                    <h2 className={`${styles.title}`}>Sign-up</h2>
-                                    <h3 className={`${styles.signup}`}>Already have an account? <Link to="/login">Login</Link></h3>
-                                    <hr />
-                                    <Form onSubmit={signup}>
-                                        <div className={styles.userName}>
-                                            <Form.Group className="mb-3" controlId="text">
-                                                <Form.Label className={`${styles.label}`}>Enter Your Name</Form.Label>
-                                                <Form.Control onChange={(e) => setUsername(e.target.value)} name="text" type='text' autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Name" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="email">
-                                                <Form.Label className={`${styles.label}`}>Enter Your Email</Form.Label>
-                                                <Form.Control onChange={(e) => setEmail(e.target.value)} name="email" type='email' autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Email" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="password">
-                                                <Form.Label className={`${styles.label}`}>Enter Your Password</Form.Label>
-                                                <Form.Control onChange={(e) => setPassword(e.target.value)} name="password" type="password" autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Password" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="file">
-                                                <Form.Control onChange={(e) => setFile(e.target.files[0])} name="file" type="file" autoComplete="off" className={`${styles.input}`} />
-                                            </Form.Group>
-                                            <div className={styles.log__btn}>
-                                                <button type='submit'>Signup</button>
+                        {
+
+                            loading ? <h5>LOADING....</h5> :
+                                <>
+                                    <Col>
+                                        <img alt="" src={img} />
+                                    </Col>
+                                    <Col>
+                                        <div className={`${styles.form}`}>
+                                            <div >
+                                                <h2 className={`${styles.title}`}>Sign-up</h2>
+                                                <h3 className={`${styles.signup}`}>Already have an account? <Link to="/login">Login</Link></h3>
+                                                <hr />
+                                                <Form onSubmit={signup}>
+                                                    <div className={styles.userName}>
+                                                        <Form.Group className="mb-3" controlId="text">
+                                                            <Form.Label className={`${styles.label}`}>Enter Your Name</Form.Label>
+                                                            <Form.Control onChange={(e) => setUsername(e.target.value)} name="text" type='text' autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Name" />
+                                                        </Form.Group>
+                                                        <Form.Group className="mb-3" controlId="email">
+                                                            <Form.Label className={`${styles.label}`}>Enter Your Email</Form.Label>
+                                                            <Form.Control onChange={(e) => setEmail(e.target.value)} name="email" type='email' autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Email" />
+                                                        </Form.Group>
+                                                        <Form.Group className="mb-3" controlId="password">
+                                                            <Form.Label className={`${styles.label}`}>Enter Your Password</Form.Label>
+                                                            <Form.Control onChange={(e) => setPassword(e.target.value)} name="password" type="password" autoComplete="off" className={`${styles.input}`} placeholder="Enter Your Password" />
+                                                        </Form.Group>
+                                                        <Form.Group className="mb-3" controlId="file">
+                                                            <Form.Control onChange={(e) => setFile(e.target.files[0])} name="file" type="file" autoComplete="off" className={`${styles.input}`} />
+                                                        </Form.Group>
+                                                        <div className={styles.log__btn}>
+                                                            <button type='submit'>Signup</button>
+                                                        </div>
+                                                    </div>
+                                                </Form>
                                             </div>
                                         </div>
-                                    </Form>
-                                </div>
-                            </div>
-                        </Col>
+                                    </Col>
+                                </>
+                        }
+
                     </Row>
                 </Container>
                 <ToastContainer />

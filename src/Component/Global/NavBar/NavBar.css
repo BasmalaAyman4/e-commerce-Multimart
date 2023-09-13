@@ -1,3 +1,7 @@
 .active {
     color: #CDDCF6 !important;
 }
+.nav-link{
+        font-family: 'JosefinSans-Regular' !important;
+        font-size: 17px;
+}

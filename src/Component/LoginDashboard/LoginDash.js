@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import img from "../../assets/images/login-removebg-preview.png"
 import Form from 'react-bootstrap/Form';
-import styles from "./Login.module.css"
+import styles from "./LoginDash.module.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../../firebase.config"
 import { ToastContainer, toast } from 'react-toastify';
-export default function Login() {
+
+export default function LoginDash() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -25,7 +26,7 @@ export default function Login() {
             console.log(user)
             setLoading(false)
             toast.success('Successfully logged in')
-            navigate('/checkout')
+            navigate('/dashboard')
 
         } catch (error) {
             setLoading(false)
@@ -43,9 +44,8 @@ export default function Login() {
                         <Col>
                             <div className={`${styles.form}`}>
                                 <div >
-                                    <h2 className={`${styles.title}`}>Login</h2>
-                                    <h3 className={`${styles.signup}`}>Don't have an account? <Link to="/signup">Sign-up</Link></h3>
-                                    <h3 className={`${styles.signup}`}>have an account? <Link to="/login-dashboard">Dashboard</Link></h3>
+                                    <h2 className={`${styles.title}`}>Login Dashboard</h2>
+
                                     <hr />
                                     {
                                         loading ?
@@ -77,6 +77,7 @@ export default function Login() {
                 </Container>
                 <ToastContainer />
             </section>
+
 
         </>
     )

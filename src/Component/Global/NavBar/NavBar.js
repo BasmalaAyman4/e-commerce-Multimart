@@ -11,10 +11,15 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Row } from 'react-bootstrap';
 import './NavBar.css'
 import { useSelector } from 'react-redux';
+import useAuth from '../../../Custom-hooks/useAuth';
+import { signOut } from "firebase/auth"
+import { auth } from '../../../firebase.config';
+import { ToastContainer, toast } from 'react-toastify';
 export default function NavBar() {
     const [navBg, setNavBg] = useState(false);
     const quantity = useSelector(state => state.cart.totalQuantity)
     const menuref = useRef(null)
+    const { currentUser } = useAuth()
     const changeNavBg = () => {
         window.scrollY >= 200 ? setNavBg(true) : setNavBg(false);
     }
@@ -25,6 +30,14 @@ export default function NavBar() {
         }
     }, [])
     const menuToggle = () => menuref.current.classList.toggle(`${styles.active__menu}`)
+    const logout = () => {
+        signOut(auth).then(() => {
+            toast.success('Logged out')
+        }).catch(err => {
+            toast.error(err.message)
+        })
+
+    }
     return (
         <>
             <header className={`${styles.header}`}>
@@ -48,6 +61,17 @@ export default function NavBar() {
                                     <li className={styles.nav__item}>
                                         <NavLink to="/cart" className="nav-link" >Cart </NavLink>
                                     </li>
+                                    {
+                                        currentUser ?
+                                            <li className={styles.nav__item}>
+                                                <NavLink to="/" onClick={logout} className="nav-link"  >Logout</NavLink>
+                                            </li>
+                                            :
+                                            <li className={styles.nav__item}>
+                                                <NavLink to="/login" className="nav-link" >Login </NavLink>
+                                            </li>
+                                    }
+
                                 </ul>
                             </div>
                             <div className={`${styles.nav__icons}`}>
@@ -59,11 +83,11 @@ export default function NavBar() {
                                     <Link to="/cart"><ShoppingCartIcon className={`${styles.i}`} /></Link>
                                     <span className={`${styles.badge}`}>{quantity}</span>
                                 </span>
-                                <Link to="/login">
-                                    <span>
-                                        <img src={userImg} alt='' className={`${styles.userImg}`} />
-                                    </span>
-                                </Link>
+                                <span>
+                                    <img src={currentUser ? currentUser.photoURL : userImg} alt='' className={`${styles.userImg}`} />
+
+                                </span>
+
                                 <div className={styles.mobile__menu}>
                                     <span onClick={menuToggle}>
                                         <MenuOpenIcon className={`${styles.i}`} />
