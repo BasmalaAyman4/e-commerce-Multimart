@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import styles from './AllProduct.module.css'
+import React from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 import useGetData from '../../Custom-hooks/useGetData'
+import styles from '../AllProduct/AllProduct.module.css'
 import { db } from '../../firebase.config'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { ToastContainer, toast } from 'react-toastify'
-export default function AllProduct() {
-    const { data: productData, loading } = useGetData('products')
+const Users = () => {
+    const { data: userData, loading } = useGetData('users')
     const deleteProduct = async (id) => {
-        await deleteDoc(doc(db, 'products', id))
+        await deleteDoc(doc(db, 'users', id))
         toast.success('Deleted')
     }
     return (
         <>
-            <section className={`${styles.all}`}>
+            <section>
                 <Container>
                     <Row>
                         <Col>
@@ -21,9 +21,8 @@ export default function AllProduct() {
                                 <thead>
                                     <tr>
                                         <th scope="col">Image</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -31,13 +30,12 @@ export default function AllProduct() {
                                     {
                                         loading ? <h3>loading....</h3>
                                             :
-                                            productData.map((item) => (
-                                                <tr key={item.id}>
-                                                    <th scope="row"><img src={item.imgUrl} alt="" className={`${styles.img}`} /></th>
-                                                    <td>{item.Title}</td>
-                                                    <td>{item.Category}</td>
-                                                    <td>{item.Price}</td>
-                                                    <td><button className='btn btn-danger' onClick={() => { deleteProduct(item.id) }}>Delete</button></td>
+                                            userData.map((item) => (
+                                                <tr key={item.uid}>
+                                                    <th scope="row"><img src={item.photoURL} alt="" className={`${styles.img}`} /></th>
+                                                    <td>{item.displayName}</td>
+                                                    <td>{item.email}</td>
+                                                    <td><button className='btn btn-danger' onClick={() => { deleteProduct(item.uid) }}>Delete</button></td>
                                                 </tr>
                                             ))
                                     }
@@ -49,6 +47,9 @@ export default function AllProduct() {
                 </Container>
                 <ToastContainer />
             </section>
+
         </>
     )
 }
+
+export default Users

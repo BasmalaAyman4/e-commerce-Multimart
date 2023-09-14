@@ -12,7 +12,7 @@ import Admin from '../Dashboard/Dash/Admin';
 import AllProduct from '../Dashboard/AllProduct/AllProduct';
 import AddProduct from '../Dashboard/AddProduct/AddProduct';
 import LoginDash from '../Component/LoginDashboard/LoginDash';
-
+import Users from '../Dashboard/Users/Users';
 export default function Router() {
     return (
         <Routes>
@@ -31,6 +31,9 @@ export default function Router() {
             </ProtectedRoute>} />
             <Route path="dashboard/add-product" element={<ProtectedRoute>
                 <AddProduct />
+            </ProtectedRoute>} />
+            <Route path="dashboard/users" element={<ProtectedRoute>
+                <Users />
             </ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

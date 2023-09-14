@@ -52,7 +52,7 @@ export default function DashNav() {
                                     <span className={`${styles.badge}`}>2</span>
                                 </span>
                                 <span>
-                                    <img src={currentUser ? currentUser.photoURL : userImg} alt='' className={`${styles.userImg}`} />
+                                    <img src={currentUser && currentUser.photoURL} alt='' className={`${styles.userImg}`} />
                                 </span>
                             </div>
                         </div>
